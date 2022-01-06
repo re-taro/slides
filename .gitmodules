@@ -1,3 +1,6 @@
 [submodule "lt-1"]
 	path = lt-1
 	url = https://github.com/Re-taro/lt-1.git
+[submodule "DCON"]
+	path = DCON
+	url = https://github.com/Re-taro/DCON.git
