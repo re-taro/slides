@@ -1,0 +1,35 @@
+/* @theme re-taro */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&family=JetBrains+Mono&display=swap');
+
+h1 {
+  color: #3c4144;
+}
+
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+}
+
+.columns {
+  color: #232a2c;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+section {
+  font-family: Inter, 'Noto Sans JP', sans-serif !important;
+  color: #0b1215;
+  background-color: #ced0d0;
+  --color-accent-fg: #c084fc;
+}
+
+pre {
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 0.7rem;
+}
+
+img {
+  background: none !important;
+}

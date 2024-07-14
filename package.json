@@ -1,0 +1,34 @@
+{
+	"name": "slides.re-taro.dev",
+	"type": "module",
+	"version": "0.0.0",
+	"private": true,
+	"packageManager": "pnpm@9.5.0",
+	"description": "Slides from re-taro",
+	"author": "Rintaro Itokawa <me@re-taro.dev> (https://re-taro.dev)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/re-taro/slides"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"dev": "marp -s . --html",
+		"build:clean": "rimraf dist",
+		"build:html": "marp",
+		"build:ogp": "marp --image png",
+		"build:images": "cpx src/**/images/* dist",
+		"build": "run-s build:*",
+		"lint": "eslint .",
+		"fmt": "pnpm run lint --fix"
+	},
+	"devDependencies": {
+		"@marp-team/marp-cli": "3.4.0",
+		"@re-taro/eslint-config": "4.1.0",
+		"cpx2": "7.0.1",
+		"eslint": "8.57.0",
+		"eslint-plugin-format": "0.1.2",
+		"npm-run-all2": "6.2.2",
+		"rimraf": "6.0.1"
+	}
+}
