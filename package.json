@@ -15,10 +15,11 @@
 	"scripts": {
 		"dev": "marp -s . --html",
 		"build:clean": "rimraf dist",
-		"build:html": "marp",
+		"build:html": "marp --html",
 		"build:ogp": "marp --image png",
-		"build:images": "cpx src/**/images/* dist",
+		"build:images": "cpx \"src/**/images/*\" dist",
 		"build": "run-s build:*",
+		"start": "serve dist",
 		"lint": "eslint .",
 		"fmt": "pnpm run lint --fix"
 	},
@@ -29,6 +30,7 @@
 		"eslint": "8.57.0",
 		"eslint-plugin-format": "0.1.2",
 		"npm-run-all2": "6.2.2",
-		"rimraf": "6.0.1"
+		"rimraf": "6.0.1",
+		"serve": "14.2.3"
 	}
 }
