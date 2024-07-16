@@ -1,7 +1,7 @@
 /* @theme re-taro */
 
 @import 'default';
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap');
 
 h1 {
   color: #3c4144;
@@ -26,7 +26,6 @@ section {
 }
 
 pre {
-  font-family: "JetBrains Mono", monospace !important;
   font-size: 0.7rem;
 }
 
