@@ -25,7 +25,7 @@ footer: 2024-07-26 | Vue.js v-tokyo Meetup #21
 
 # Self introduction
 
-![bg 50% right:50%](v-tokyo21/images/re-taro.png)
+![bg 50% right:50%](images/re-taro.png)
 
 ## りんたろー / re-taro
 
@@ -213,7 +213,7 @@ Oxc TypeScript + JSX トランスフォーマーは swc よりおよそ2倍高�
 
 <div class="image">
 
-![w:600](v-tokyo21/images/oxc_vs_swc.svg)
+![w:600](images/oxc_vs_swc.svg)
 
 </div>
 
