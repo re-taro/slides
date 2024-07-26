@@ -112,14 +112,16 @@ Rust が JS ツールチェインの実装言語として選ばれる理由は�
 
 - ライフタイムアノテーション
 - ゼロコスト抽象化
+- `napi_rs`の存在
 
-これらの言語仕様によって、開発者はアルゴリズムの複雑さにのみ注意するだけでよくなるため、より高速なツールチェインを簡単に実装することができます。
+これらの言語仕様やライブラリによって、開発者はアルゴリズムの複雑さにのみ注意するだけでよくなるため、より高速なツールチェインを簡単に実装することができます。
 -->
 
 # Why Rust?
 
 - Lifetime annotation
 - Zero-cost abstraction
+- Existence of `napi_rs`
 
 ---
 
@@ -240,10 +242,12 @@ Lean architecture, Oxc achieves high-performance processing.
       Expression(ExpressionNode<'a>),
     }
     ```
-2. `compact_str`を用いてインライン化された文字列
-  - Rust の `std::string::String` の実態は常にヒープにアロケートされます。一方で `compact_str::CompactStr` は24バイトまでの文字列をスタックに配置することで、ヒープアロケーションを回避します。
+    Oxc はここ以外でヒープの確保が行われません。
+2. パフォーマンスの問題（ランタイムとコンパイル速度）はすべてバグとみなすポリシー。
+  - Oxc チームの決断の多くはこのポリシーに基づいている。
+  - https://oxc.rs/docs/contribute/rules.html#development-policy
 
-Oxc のすごいところはこの２つ以外でヒープの確保が行われないことです。
+memo: compact_str に関する記述がドキュメントにあるが、現在 Oxc は oxc_span 以外で使用していない。なぜなら bumpalow と組み合わせるとメモリリークすることが判明したから
 -->
 
 <style scopde>
@@ -269,12 +273,62 @@ Oxc のすごいところはこの２つ以外でヒープの確保が行われ�
       }
       ```
 
-2.  Inline strings using [`compact_str`](https://crates.io/crates/compact_str)
+2.  Policy to consider all performance issues (runtime and compile speed) as bugs.
 
-    - `std::string::String` always allocates on the heap
-    - `compact_str::CompactStr` places strings up to 24 bytes on the stack
+    - Many of the Oxc team's decisions are based on this policy.
+    - https://oxc.rs/docs/contribute/rules.html#development-policy
 
-Oxc does not allocate on the heap except for these two.
+---
+
+<!--
+3. データ指向な設計思想で実装されている。
+
+ゲーム開発の現場などでは有名な話ですが、一般的にメモリ IO は CPU IO に比べてボトルネックとなりやすいです。
+Rustはその型システムにて堅牢なデータ指向プログラミングを可能にしています。
+Oxc では以下のように enum の大きさが小さくなるようにテストで強制しています。
+
+```rs
+#[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
+#[test]
+fn no_bloat_enum_sizes() {
+    use std::mem::size_of;
+    use crate::ast::*;
+    assert_eq!(size_of::<Statement>(), 16);
+    assert_eq!(size_of::<Expression>(), 16);
+    assert_eq!(size_of::<Declaration>(), 16);
+}
+```
+-->
+
+<style scopde>
+  h2 {
+    margin-bottom: 0;
+  }
+  h3 {
+    margin-top: 0;
+  }
+</style>
+
+## Performance
+
+### Why is Oxc so fast?
+
+3. Think about data oriented design
+
+   - Memory IO is generally more likely to be a bottleneck than CPU IO.
+   - Rust enables robust data-oriented programming in its type system.
+   - Oxc forces the test to restrict the size of the enum as follows.
+     ```rs
+     #[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
+     #[test]
+     fn no_bloat_enum_sizes() {
+         use std::mem::size_of;
+         use crate::ast::*;
+         assert_eq!(size_of::<Statement>(), 16);
+         assert_eq!(size_of::<Expression>(), 16);
+         assert_eq!(size_of::<Declaration>(), 16);
+     }
+     ```
 
 ---
 
@@ -454,3 +508,5 @@ Our focus is not on performance for performance's sake, but on performance to "b
   https://github.com/oxc-project/bench-javascript-parser-written-in-rust
 - oxc-project/oxc (GitHub)
   https://github.com/oxc-project/oxc
+- Introduction to Data Oriented Design
+  https://www.frostbite.com/2010/11/introduction-to-data-oriented-design/
