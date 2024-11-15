@@ -22,7 +22,7 @@ section {
 	font-family: Inter, "Noto Sans JP", sans-serif !important;
 	color: #0b1215;
 	background-color: #ced0d0;
-	--color-accent-fg: #c084fc;
+	--fgColor-accent: #c084fc;
 }
 
 pre {
