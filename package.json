@@ -27,7 +27,7 @@
 		"@marp-team/marp-cli": "4.0.3",
 		"@re-taro/eslint-config": "5.2.1",
 		"cpx2": "8.0.0",
-		"eslint": "9.14.0",
+		"eslint": "9.15.0",
 		"eslint-plugin-format": "0.1.2",
 		"npm-run-all2": "7.0.1",
 		"rimraf": "6.0.1",
