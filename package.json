@@ -1,36 +1,38 @@
 {
-	"name": "slides.re-taro.dev",
-	"type": "module",
-	"version": "0.0.0",
-	"private": true,
-	"packageManager": "pnpm@9.14.2",
-	"description": "Slides from re-taro",
-	"author": "Rintaro Itokawa <me@re-taro.dev> (https://re-taro.dev)",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/re-taro/slides"
-	},
-	"sideEffects": false,
-	"scripts": {
-		"dev": "marp -s . --html",
-		"build:clean": "rimraf dist",
-		"build:html": "marp --html",
-		"build:ogp": "marp --image png",
-		"build:images": "cpx \"src/**/images/*\" dist",
-		"build": "run-s build:*",
-		"start": "serve dist",
-		"lint": "eslint .",
-		"fmt": "pnpm run lint --fix"
-	},
-	"devDependencies": {
-		"@marp-team/marp-cli": "4.0.3",
-		"@re-taro/eslint-config": "5.2.1",
-		"cpx2": "8.0.0",
-		"eslint": "9.15.0",
-		"eslint-plugin-format": "0.1.2",
-		"npm-run-all2": "7.0.1",
-		"rimraf": "6.0.1",
-		"serve": "14.2.4"
-	}
+  "name": "slides.re-taro.dev",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.14.2",
+  "description": "Slides from re-taro",
+  "author": "Rintaro Itokawa <me@re-taro.dev> (https://re-taro.dev)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/re-taro/slides"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "dev": "marp --engine engine.js -s . --html",
+    "build:clean": "rimraf dist",
+    "build:html": "marp --engine engine.js --html",
+    "build:ogp": "marp --image png --allow-local-files",
+    "build:images": "cpx \"src/**/images/*\" dist",
+    "build:pdf": "marp --engine engine.js --pdf --allow-local-files",
+    "build": "run-s build:*",
+    "start": "serve dist",
+    "lint": "eslint .",
+    "fmt": "pnpm run lint --fix"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "4.0.3",
+    "@re-taro/eslint-config": "5.2.1",
+    "@shikijs/markdown-it": "1.23.1",
+    "cpx2": "8.0.0",
+    "eslint": "9.15.0",
+    "eslint-plugin-format": "0.1.2",
+    "npm-run-all2": "7.0.1",
+    "rimraf": "6.0.1",
+    "serve": "14.2.4"
+  }
 }

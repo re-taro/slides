@@ -1,10 +1,40 @@
 /* @theme re-taro */
 
 @import "default";
-@import url("https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&IBM+Plex+Mono&display=swap");
+
+:root {
+	--bg-main: oklch(17.64% 0.0124 226.09);
+	--fg-main: oklch(85.6% 0.0022 197.12);
+	--fg-secondary: oklch(77.23% 0.0011 197.13);
+	--accent: oklch(72.17% 0.1767 305.5);
+}
 
 h1 {
-	color: #3c4144;
+	color: var(--fg-main);
+	margin-top: 1rem;
+	margin-bottom: 0;
+	line-height: 1.7;
+}
+
+h2 {
+	margin-top: 1rem;
+	margin-bottom: 0;
+}
+
+h1 + h2 {
+	margin-top: 0;
+}
+
+p,
+ul,
+ol,
+blockquote {
+	margin-top: 0.5rem;
+	margin-bottom: 0;
+}
+li::marker {
+	color: var(--fg-secondary);
 }
 
 section::after {
@@ -20,12 +50,16 @@ section::after {
 
 section {
 	font-family: Inter, "Noto Sans JP", sans-serif !important;
-	color: #0b1215;
-	background-color: #ced0d0;
-	--fgColor-accent: #c084fc;
+	color: var(--fg-main);
+	background-color: var(--bg-main);
+	--fgColor-accent: var(--accent);
+	--header-footer-color: var(--fg-secondary);
+	--paginate-color: var(--fg-secondary);
+	--fgColor-default: var(--fg-main);
 }
 
-pre {
+code {
+	font-family: "IBM Plex Mono", monospace !important;
 	font-size: 0.7rem;
 }
 
