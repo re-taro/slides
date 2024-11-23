@@ -13,11 +13,12 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"dev": "marp -s . --html",
+		"dev": "marp --engine engine.js -s . --html",
 		"build:clean": "rimraf dist",
-		"build:html": "marp --html",
-		"build:ogp": "marp --image png",
+		"build:html": "marp --engine engine.js --html",
+		"build:ogp": "marp --image png --allow-local-files",
 		"build:images": "cpx \"src/**/images/*\" dist",
+		"build:pdf": "marp --engine engine.js --pdf --allow-local-files",
 		"build": "run-s build:*",
 		"start": "serve dist",
 		"lint": "eslint .",
@@ -26,6 +27,7 @@
 	"devDependencies": {
 		"@marp-team/marp-cli": "4.0.3",
 		"@re-taro/eslint-config": "5.2.1",
+		"@shikijs/markdown-it": "1.23.1",
 		"cpx2": "8.0.0",
 		"eslint": "9.15.0",
 		"eslint-plugin-format": "0.1.2",

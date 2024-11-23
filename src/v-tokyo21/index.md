@@ -508,5 +508,3 @@ Our focus is not on performance for performance's sake, but on performance to "b
   https://github.com/oxc-project/bench-javascript-parser-written-in-rust
 - oxc-project/oxc (GitHub)
   https://github.com/oxc-project/oxc
-- Introduction to Data Oriented Design
-  https://www.frostbite.com/2010/11/introduction-to-data-oriented-design/
