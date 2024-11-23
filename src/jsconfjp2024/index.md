@@ -201,7 +201,7 @@ pnpm dlx storybook@latest init
 <!--
 先ほど Storybook を使う目的を挙げましたが、プロジェクト立ち上げ時にそこまで考えて Storybook を導入しましたでしょうか？
 
-`storybook init` だけでセットアップが終わるし(諸説あり)、あると便利だから入れておこうみたいなノリで導入することがほとんどだと思います。
+`storybook init` だけでセットアップが終わるし(諸説あり)、あると便利だから入れておこうみたいなノリで導入することも少なくないでしょう。
 -->
 
 ---
@@ -295,6 +295,7 @@ render-as-you-fetch や内製している DI コンテナや msw などプロジ
 
 - Storybook を使う目的を明確にする
 - 目的から逆算して、受ける恩恵を取捨選択する
+- その恩恵を受けるために必要な設定を逆算して、保守する
 
 <!--
 そのためには、Storybook を使う目的を明確にし、目的から逆算して受ける恩恵を取捨選択することが大事だと思います。
@@ -376,11 +377,15 @@ Storybook と テスト --> 時期尚早かなぁ...
 
 ## Storybook runtime 上でテストする方法に統合されている感覚
 
-- Storybook v6 とかの頃: `composeStory` で `play function` の中身を `jest` with `testing-library` でアサーション！
-- Storybook v7 とかの頃: インタラクションテスト、a11y、カバレッジ計測を `test-runner` を使って行う！
-- Storybook v8 とかの頃: `@storybook/test` が進歩してきたのでアサーションからカバレッジ計測までを `test-runner` で行う！
+- Storybook v6 とかの頃: `composeStory` で `play function` の中身を `jest` with
+  `testing-library` でアサーション！
+- Storybook v7 とかの頃: インタラクションテスト、a11y、カバレッジ計測を
+  `test-runner` を使って行う！
+- Storybook v8 とかの頃: `@storybook/test`
+  が進歩してきたのでアサーションからカバレッジ計測までを `test-runner` で行う！
 
---> だんだん Storybook を起動してあることを前提としたテストの形式になってきている
+--> だんだん Storybook
+を起動してあることを前提としたテストの形式になってきている
 
 <!--
 時期尚早と感じる理由は、テストが Storybook を起動してあることを前提とした形式になってきているからです。
@@ -404,7 +409,8 @@ v6 の頃は `composeStory` を使って Story の実行結果を `jest` でア�
 
 ## Storybook を利用したテストの例
 
-- `composeStory` で `play function` の中身を `jest` with `testing-library` でアサーション
+- `composeStory` で `play function` の中身を `jest` with `testing-library`
+  でアサーション
   - setup file に Storybook の依存が発生するがそこまでコストがかからない
 - Storybook 自体の腐敗防止のためのテスト
   - 各 Story が正常に描画されているか
@@ -416,6 +422,41 @@ v6 の頃は `composeStory` を使って Story の実行結果を `jest` でア�
 Storybook を利用した気楽なテストの例として、`composeStory` を使って Story の実行結果を元にテストを行う方法があります。
 これは実際のブラウザ上でテストを行うよりも軽量で、コストをそこまでかけずに Story の再利用が可能です。
 -->
+
+---
+
+# 受ける恩恵から逆算した設定たち
+
+- レビュアーとの疎通を取ることができる
+  - view がレンダリングされていて、コンポーネントを動かせれば良い
+    - アプリケーションのバンドル設定よりも軽い設定や、別のバンドラをビルダーに使う選択肢もある
+  - モックの設定
+- 実装する際のプレイグラウンド
+  - アプリケーションのバンドル設定と同じ環境である必要がある
+    - アプリケーションのバンドル設定をきちんと保守していれば自ずとStorybookも保守される
+  - モックの設定
+
+<style scoped>
+  section h1 {
+    line-height: 1;
+  }
+</style>
+
+---
+
+## だいたいモックが大変
+
+--> 今に始まったことではない。
+僕らにできることは、設計でモックを必要とする箇所を狭めること。
+
+---
+
+# モックに対するアイデア
+
+- API との疎通を含む view に関係するロジックを切り出す
+  - API 疎通はアプリケーションの動作確認にて、ロジックは unit test で保証
+- 切り出したロジックは DI コンテナを使ってモックが簡単になるようにする
+- custom decorator を作成して DI を簡単にする
 
 ---
 
@@ -440,6 +481,7 @@ Storybook を利用した気楽なテストの例として、`composeStory` を�
 - Storybook は便利だが、使い方を間違えると足枷になる
 - Storybook を使う目的を明確にし、受ける恩恵を取捨選択する
   - Storybook とテストは分離して考えることが大事 (現時点では)
+- 受ける恩恵から逆算して、必要な設定を整理する
 - 徐々に Storybook との付き合い方を見直していくことが大事
 
 <!--
