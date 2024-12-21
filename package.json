@@ -27,7 +27,7 @@
 	"devDependencies": {
 		"@marp-team/marp-cli": "4.0.3",
 		"@re-taro/eslint-config": "5.3.0",
-		"@shikijs/markdown-it": "1.24.3",
+		"@shikijs/markdown-it": "1.24.4",
 		"cpx2": "8.0.0",
 		"eslint": "9.17.0",
 		"eslint-plugin-format": "0.1.2",
