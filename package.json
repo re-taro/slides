@@ -25,7 +25,7 @@
 		"fmt": "pnpm run lint --fix"
 	},
 	"devDependencies": {
-		"@marp-team/marp-cli": "4.1.1",
+		"@marp-team/marp-cli": "4.1.2",
 		"@re-taro/eslint-config": "5.3.0",
 		"@shikijs/markdown-it": "1.29.2",
 		"cpx2": "8.0.0",
