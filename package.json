@@ -33,6 +33,6 @@
 		"eslint-plugin-format": "1.0.1",
 		"npm-run-all2": "7.0.2",
 		"rimraf": "6.0.1",
-		"serve": "14.2.4"
+		"serve": "14.2.6"
 	}
 }
